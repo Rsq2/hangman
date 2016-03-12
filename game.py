@@ -7,7 +7,6 @@ def main():
     correct_letters = set()
 
     secret_word = get_word_from_url('http://randomword.setgetgo.com/get.php')
-
     #secret_word = get_random_word('words.txt')
 
     game_is_done = False
@@ -19,12 +18,15 @@ def main():
                 game_is_done = False
                 main()
             else:
-.lower()
+                game_is_done = True
+                break
+
         display_board(missed_letters, correct_letters, secret_word)
         next_input = str(input("What is your next guess?   >")).lower()
 
         if next_input in missed_letters or next_input in correct_letters:
             print("You've Already Guessed That Letter... \n")
+
         else:
             if check_letter(next_input, secret_word) == True:
                 correct_letters.update(next_input[0])
